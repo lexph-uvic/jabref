@@ -14,16 +14,7 @@ import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.OverrunStyle;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -348,6 +339,8 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
         ActionFactory factory = new ActionFactory();
 
         menu.getItems().addAll(
+                factory.createMenuItem(StandardActions.EDIT_FILE_LINK, new DisabledCommand()),
+                new SeparatorMenuItem(),
                 factory.createMenuItem(StandardActions.REMOVE_LINKS, new MultiContextAction(StandardActions.REMOVE_LINKS, selectedFiles, preferences))
         );
 
@@ -377,6 +370,17 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
         );
 
         return menu;
+    }
+
+    private class DisabledCommand extends SimpleCommand {
+        public DisabledCommand() {
+            setExecutable(false);
+        }
+
+        @Override
+        public void execute() {
+            // Intentionally does nothing
+        }
     }
 
     private class MultiContextAction extends SimpleCommand {
