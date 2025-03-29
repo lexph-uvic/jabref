@@ -105,6 +105,7 @@ public enum StandardActions implements Action {
     OPEN_DATABASE_FOLDER(Localization.lang("Reveal in file explorer")),
     OPEN_FOLDER(Localization.lang("Open folder"), Localization.lang("Open folder"), IconTheme.JabRefIcons.FOLDER, KeyBinding.OPEN_FOLDER),
     OPEN_FILE(Localization.lang("Open file"), Localization.lang("Open file"), IconTheme.JabRefIcons.FILE, KeyBinding.OPEN_FILE),
+    OPEN_FILES(Localization.lang("Open files"), Localization.lang("Open files"), IconTheme.JabRefIcons.FILE, KeyBinding.OPEN_FILE),
     OPEN_CONSOLE(Localization.lang("Open terminal here"), Localization.lang("Open terminal here"), IconTheme.JabRefIcons.CONSOLE, KeyBinding.OPEN_CONSOLE),
     COPY_LINKED_FILES(Localization.lang("Copy linked files to folder...")),
     COPY_DOI(Localization.lang("Copy DOI")),

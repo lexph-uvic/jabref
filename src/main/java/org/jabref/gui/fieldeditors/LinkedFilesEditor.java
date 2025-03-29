@@ -341,6 +341,7 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
         menu.getItems().addAll(
                 factory.createMenuItem(StandardActions.EDIT_FILE_LINK, new DisabledCommand()),
                 new SeparatorMenuItem(),
+                factory.createMenuItem(StandardActions.OPEN_FILES, new MultiContextAction(StandardActions.OPEN_FILES, selectedFiles, preferences)),
                 factory.createMenuItem(StandardActions.REMOVE_LINKS, new MultiContextAction(StandardActions.REMOVE_LINKS, selectedFiles, preferences))
         );
 
@@ -407,6 +408,7 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
             - use of standard IO causing failing tests in MainArchitectureTest.java
              */
             System.out.println("Executing MultiContextAction: " + command); /* MUST REMOVE BEFORE PULL REQUEST */
+            // When running on macOS, only one file may open at a time. This is known to affect PNG and PDF files opened in Preview. A delay workaround may be necessary.
             List<LinkedFileViewModel> selectedFilesCopy = new ArrayList<>(selectedFiles);
             for (LinkedFileViewModel linkedFile : selectedFilesCopy) {
                 System.out.println("Processing file: " + linkedFile.getFile().getLink()); /* MUST REMOVE BEFORE PULL REQUEST */
@@ -459,7 +461,7 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
         public void execute() {
             switch (command) {
                 case EDIT_FILE_LINK -> linkedFile.edit();
-                case OPEN_FILE -> linkedFile.open();
+                case OPEN_FILE, OPEN_FILES -> linkedFile.open();
                 case OPEN_FOLDER -> linkedFile.openFolder();
                 case DOWNLOAD_FILE -> linkedFile.download(true);
                 case REDOWNLOAD_FILE -> linkedFile.redownload();
