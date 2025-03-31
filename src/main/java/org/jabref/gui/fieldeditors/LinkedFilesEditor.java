@@ -344,6 +344,8 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
                 factory.createMenuItem(StandardActions.OPEN_FILES, new MultiContextAction(StandardActions.OPEN_FILES, selectedFiles, preferences)),
                 factory.createMenuItem(StandardActions.OPEN_FOLDERS, new MultiContextAction(StandardActions.OPEN_FOLDERS, selectedFiles, preferences)),
                 new SeparatorMenuItem(),
+                factory.createMenuItem(StandardActions.RENAME_FILE_TO_PATTERN, new DisabledCommand()),
+                factory.createMenuItem(StandardActions.RENAME_FILE_TO_NAME, new DisabledCommand()),
                 factory.createMenuItem(StandardActions.REMOVE_LINKS, new MultiContextAction(StandardActions.REMOVE_LINKS, selectedFiles, preferences))
         );
 
