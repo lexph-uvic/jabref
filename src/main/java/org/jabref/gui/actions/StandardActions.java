@@ -103,10 +103,8 @@ public enum StandardActions implements Action {
     EDIT_EXISTING_STUDY(Localization.lang("Manage study definition")),
 
     OPEN_DATABASE_FOLDER(Localization.lang("Reveal in file explorer")),
-    OPEN_FOLDER(Localization.lang("Open folder"), Localization.lang("Open folder"), IconTheme.JabRefIcons.FOLDER, KeyBinding.OPEN_FOLDER),
-    OPEN_FOLDERS(Localization.lang("Open folders"), Localization.lang("Open folders"), IconTheme.JabRefIcons.FOLDER, KeyBinding.OPEN_FOLDER),
-    OPEN_FILE(Localization.lang("Open file"), Localization.lang("Open file"), IconTheme.JabRefIcons.FILE, KeyBinding.OPEN_FILE),
-    OPEN_FILES(Localization.lang("Open files"), Localization.lang("Open files"), IconTheme.JabRefIcons.FILE, KeyBinding.OPEN_FILE),
+    OPEN_FOLDER(Localization.lang("Open folder(s)"), Localization.lang("Open folder(s)"), IconTheme.JabRefIcons.FOLDER, KeyBinding.OPEN_FOLDER),
+    OPEN_FILE(Localization.lang("Open file(s)"), Localization.lang("Open file(s)"), IconTheme.JabRefIcons.FILE, KeyBinding.OPEN_FILE),
     OPEN_CONSOLE(Localization.lang("Open terminal here"), Localization.lang("Open terminal here"), IconTheme.JabRefIcons.CONSOLE, KeyBinding.OPEN_CONSOLE),
     COPY_LINKED_FILES(Localization.lang("Copy linked files to folder...")),
     COPY_DOI(Localization.lang("Copy DOI")),
@@ -163,8 +161,7 @@ public enum StandardActions implements Action {
     MOVE_FILE_TO_FOLDER(Localization.lang("Move file to file directory"), IconTheme.JabRefIcons.MOVE_TO_FOLDER),
     MOVE_FILE_TO_FOLDER_AND_RENAME(Localization.lang("Move file to file directory and rename file")),
     COPY_FILE_TO_FOLDER(Localization.lang("Copy linked file to folder..."), IconTheme.JabRefIcons.COPY_TO_FOLDER, KeyBinding.COPY),
-    REMOVE_LINK(Localization.lang("Remove link"), IconTheme.JabRefIcons.REMOVE_LINK),
-    REMOVE_LINKS(Localization.lang("Remove links"), IconTheme.JabRefIcons.REMOVE_LINK),
+    REMOVE_LINK(Localization.lang("Remove link(s)"), IconTheme.JabRefIcons.REMOVE_LINK),
     DELETE_FILE(Localization.lang("Permanently delete local file"), IconTheme.JabRefIcons.DELETE_FILE, KeyBinding.DELETE_ENTRY),
 
     HELP(Localization.lang("Online help"), IconTheme.JabRefIcons.HELP, KeyBinding.HELP),

@@ -341,12 +341,12 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
         menu.getItems().addAll(
                 factory.createMenuItem(StandardActions.EDIT_FILE_LINK, new DisabledCommand()),
                 new SeparatorMenuItem(),
-                factory.createMenuItem(StandardActions.OPEN_FILES, new MultiContextAction(StandardActions.OPEN_FILES, selectedFiles, preferences)),
-                factory.createMenuItem(StandardActions.OPEN_FOLDERS, new MultiContextAction(StandardActions.OPEN_FOLDERS, selectedFiles, preferences)),
+                factory.createMenuItem(StandardActions.OPEN_FILE, new MultiContextAction(StandardActions.OPEN_FILE, selectedFiles, preferences)),
+                factory.createMenuItem(StandardActions.OPEN_FOLDER, new MultiContextAction(StandardActions.OPEN_FOLDER, selectedFiles, preferences)),
                 new SeparatorMenuItem(),
                 factory.createMenuItem(StandardActions.RENAME_FILE_TO_PATTERN, new DisabledCommand()),
                 factory.createMenuItem(StandardActions.RENAME_FILE_TO_NAME, new DisabledCommand()),
-                factory.createMenuItem(StandardActions.REMOVE_LINKS, new MultiContextAction(StandardActions.REMOVE_LINKS, selectedFiles, preferences))
+                factory.createMenuItem(StandardActions.REMOVE_LINK, new MultiContextAction(StandardActions.REMOVE_LINK, selectedFiles, preferences))
         );
 
         return menu;
@@ -465,8 +465,8 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
         public void execute() {
             switch (command) {
                 case EDIT_FILE_LINK -> linkedFile.edit();
-                case OPEN_FILE, OPEN_FILES -> linkedFile.open();
-                case OPEN_FOLDER, OPEN_FOLDERS -> linkedFile.openFolder();
+                case OPEN_FILE -> linkedFile.open();
+                case OPEN_FOLDER -> linkedFile.openFolder();
                 case DOWNLOAD_FILE -> linkedFile.download(true);
                 case REDOWNLOAD_FILE -> linkedFile.redownload();
                 case RENAME_FILE_TO_PATTERN -> linkedFile.renameToSuggestion();
@@ -474,7 +474,7 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
                 case MOVE_FILE_TO_FOLDER -> linkedFile.moveToDefaultDirectory();
                 case MOVE_FILE_TO_FOLDER_AND_RENAME -> linkedFile.moveToDefaultDirectoryAndRename();
                 case DELETE_FILE -> viewModel.deleteFile(linkedFile);
-                case REMOVE_LINK, REMOVE_LINKS -> viewModel.removeFileLink(linkedFile);
+                case REMOVE_LINK -> viewModel.removeFileLink(linkedFile);
             }
         }
     }
