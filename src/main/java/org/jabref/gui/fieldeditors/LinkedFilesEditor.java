@@ -399,28 +399,23 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
             this.selectedFiles = selectedFiles;
             this.preferences = preferences;
 
-            this.executable.bind(Bindings.createBooleanBinding(
-                    () -> !selectedFiles.isEmpty(),
-                    selectedFiles
-            ));
+            this.executable.bind(
+                    switch (command) {
+                        case REMOVE_LINK -> Bindings.createBooleanBinding(
+                                () -> !selectedFiles.isEmpty(),
+                                selectedFiles);
+                        default -> BindingsHelper.constantOf(true);
+                    });
         }
 
         @Override
         public void execute() {
-            /*
-            Must remove print statements before pull request.
-            - use of standard IO causing failing tests in MainArchitectureTest.java
-             */
-            System.out.println("Executing MultiContextAction: " + command); /* MUST REMOVE BEFORE PULL REQUEST */
             // When running on macOS, only one file may open at a time. This is known to affect PNG and PDF files opened in Preview. A delay workaround may be necessary.
             List<LinkedFileViewModel> selectedFilesCopy = new ArrayList<>(selectedFiles);
-            for (LinkedFileViewModel linkedFile : selectedFilesCopy) {
-                System.out.println("Processing file: " + linkedFile.getFile().getLink()); /* MUST REMOVE BEFORE PULL REQUEST */
-                new ContextAction(command, linkedFile, preferences).execute();
-                System.out.println("Finished processing: " + linkedFile.getFile().getLink()); /* MUST REMOVE BEFORE PULL REQUEST */
-            }
 
-            System.out.println("MultiContextAction completed"); /* MUST REMOVE BEFORE PULL REQUEST */
+            for (LinkedFileViewModel linkedFile : selectedFilesCopy) {
+                new ContextAction(command, linkedFile, preferences).execute();
+            }
         }
 
 
