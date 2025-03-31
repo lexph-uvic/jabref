@@ -346,6 +346,7 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
                 new SeparatorMenuItem(),
                 factory.createMenuItem(StandardActions.RENAME_FILE_TO_PATTERN, new DisabledCommand()),
                 factory.createMenuItem(StandardActions.RENAME_FILE_TO_NAME, new DisabledCommand()),
+                factory.createMenuItem(StandardActions.MOVE_FILE_TO_FOLDER, new MultiContextAction(StandardActions.MOVE_FILE_TO_FOLDER, selectedFiles, preferences)),
                 factory.createMenuItem(StandardActions.REMOVE_LINK, new MultiContextAction(StandardActions.REMOVE_LINK, selectedFiles, preferences))
         );
 
@@ -403,6 +404,12 @@ public class LinkedFilesEditor extends HBox implements FieldEditorFX {
                     switch (command) {
                         case REMOVE_LINK -> Bindings.createBooleanBinding(
                                 () -> !selectedFiles.isEmpty(),
+                                selectedFiles);
+                        case MOVE_FILE_TO_FOLDER -> Bindings.createBooleanBinding(
+                                () -> !selectedFiles.isEmpty()
+                                        && selectedFiles.stream().noneMatch(file -> file.getFile().isOnlineLink())
+                                        && selectedFiles.stream().allMatch(file -> file.getFile().findIn(databaseContext, preferences.getFilePreferences()).isPresent())
+                                        && selectedFiles.stream().noneMatch(file -> file.isGeneratedPathSameAsOriginal()),
                                 selectedFiles);
                         default -> BindingsHelper.constantOf(true);
                     });
